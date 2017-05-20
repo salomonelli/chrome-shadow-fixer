@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  entry: ['babel-polyfill', './src/javascript.js'],
+  entry: ['./src/javascript.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'javascript.js',
