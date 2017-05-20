@@ -1,8 +1,9 @@
 {
   "name": "chrome-shadow-fixer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "fixes box-shadows to be printable in Chrome",
-  "main": "dist/javascript.js",
+  "main": "dist/lib/javascript.js",
+  "jsnext:main": "dist/es/javascript.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/salomonelli/chrome-shadow-fixer.git"
