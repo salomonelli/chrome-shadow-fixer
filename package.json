@@ -9,9 +9,7 @@
   },
   "scripts": {
     "lint": "eslint src/javascript.js",
-    "minify": "uglifyjs --output dist/javascript.min.js dist/javascript.js",
-    "babel": "babel --presets es2015 src/javascript.js -o dist/javascript.js",
-    "build": "npm run babel && npm run minify",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "salomonelli",
@@ -20,11 +18,10 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.19.0",
-    "uglify-js": "^3.0.9"
-  },
-  "dependencies": {
-    "jquery": "^3.2.1"
+    "uglify-js": "^3.0.9",
+    "webpack": "^2.5.1"
   }
 }
