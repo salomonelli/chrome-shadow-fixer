@@ -8,8 +8,17 @@
     "url": "https://github.com/salomonelli/chrome-shadow-fixer.git"
   },
   "scripts": {
+    "lint": "eslint src/javascript.js",
+    "build": "babel --presets es2015 src/javascript.js -o dist/javascript.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "salomonelli",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^3.19.0"
+  }
 }
