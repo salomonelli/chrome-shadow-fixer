@@ -10,6 +10,7 @@
   "scripts": {
     "lint": "eslint src/javascript.js",
     "build": "webpack",
+    "dev": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "salomonelli",

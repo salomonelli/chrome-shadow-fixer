@@ -3802,20 +3802,55 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var fixShadowsOfElements = function fixShadowsOfElements(elements) {
-  if (elements.length < 1) throw new Error('fixShadowsOfElements(): Passed array does not contain any elements.');
-};
-
-var fixShadowsOfAllElements = function fixShadowsOfAllElements(elements) {
-  var allElements = (0, _jquery2.default)('*').get();
-  var elementsWithShadows = allElements.filter(function (el) {
+var getElements = function getElements(elements) {
+  if (elements && elements.length > 0) return elements;
+  return (0, _jquery2.default)('*').get().filter(function (el) {
     return (0, _jquery2.default)(el).css('box-shadow') !== 'none';
   });
-  console.dir(elementsWithShadows);
+};
+
+var getElementsStyling = function getElementsStyling(elements) {
+  return elements.map(function (el) {
+    return {
+      offset: (0, _jquery2.default)(el).offset(),
+      height: (0, _jquery2.default)(el).outerHeight(),
+      width: (0, _jquery2.default)(el).outerWidth(),
+      shadow: (0, _jquery2.default)(el).css('box-shadow')
+    };
+  });
+};
+
+var generateElements = function generateElements(elements) {
+  var ret = '<div id="chrome-shadow-fixer">';
+  elements.forEach(function (el, i) {
+    return ret += '<div id="chrome-shadow-fixer-' + i + '"></div>';
+  });
+  return ret += '</div>';
 };
 
 var fixShadows = exports.fixShadows = function fixShadows(elements) {
-  if (elements) fixShadowsOfElements(elements);else fixShadowsOfAllElements();
+  var elementsWithShadows = getElements(elements);
+  if (elementsWithShadows.length < 1) {
+    console.warn('fixShadows(): No elements to fix shadows.');
+    return;
+  }
+  var generatedElements = generateElements(elementsWithShadows);
+  (0, _jquery2.default)('body').append(generatedElements);
+  var elementStylings = getElementsStyling(elementsWithShadows);
+  elementStylings.forEach(function (el, i) {
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('position', 'absolute');
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('display', 'inline-block');
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('top', el.offset.top);
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('left', el.offset.left);
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('height', el.height);
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('width', el.width);
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('box-shadow', el.shadow);
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('-webkit-print-color-adjust', 'exact');
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('-webkit-filter', 'opacity(1)');
+  });
+  elementsWithShadows.forEach(function (el) {
+    return (0, _jquery2.default)(el).css('box-shadow', 'none');
+  });
 };
 
 fixShadows();
