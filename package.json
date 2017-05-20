@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "fixes box-shadows to be printable in Chrome",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/salomonelli/chrome-shadow-fixer.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "salomonelli",
   "license": "ISC"
 }
