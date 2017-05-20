@@ -3,7 +3,9 @@ module.exports = {
   entry: ['babel-polyfill', './src/javascript.js'],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'javascript.js',
+    libraryTarget: 'var',
+    library: 'ChromeShadowFixer'
   },
   module: {
     loaders: [{

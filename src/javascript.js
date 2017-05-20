@@ -22,7 +22,7 @@ const generateElements = elements => {
   return ret += '</div>';
 };
 
-export const fixShadows = elements => {
+export const fix = elements => {
   const elementsWithShadows = getElements(elements);
   if (elementsWithShadows.length < 1) {
     console.warn('fixShadows(): No elements to fix shadows.');
@@ -40,9 +40,7 @@ export const fixShadows = elements => {
     $('#chrome-shadow-fixer-'+i).css('width', el.width);
     $('#chrome-shadow-fixer-'+i).css('box-shadow', el.shadow);
     $('#chrome-shadow-fixer-'+i).css('-webkit-print-color-adjust', 'exact');
-    $('#chrome-shadow-fixer-'+i).css('-webkit-filter', 'opacity(1)');
+    $('#chrome-shadow-fixer-'+i).css('-webkit-filter', 'blur(0)');
   });
   elementsWithShadows.forEach(el => $(el).css('box-shadow', 'none'));
 };
-
-fixShadows();

@@ -1,3 +1,4 @@
+var ChromeShadowFixer =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -3794,7 +3795,7 @@ define(String.prototype, "padRight", "".padEnd);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fixShadows = undefined;
+exports.fix = undefined;
 
 var _jquery = __webpack_require__(298);
 
@@ -3828,7 +3829,7 @@ var generateElements = function generateElements(elements) {
   return ret += '</div>';
 };
 
-var fixShadows = exports.fixShadows = function fixShadows(elements) {
+var fix = exports.fix = function fix(elements) {
   var elementsWithShadows = getElements(elements);
   if (elementsWithShadows.length < 1) {
     console.warn('fixShadows(): No elements to fix shadows.');
@@ -3846,14 +3847,12 @@ var fixShadows = exports.fixShadows = function fixShadows(elements) {
     (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('width', el.width);
     (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('box-shadow', el.shadow);
     (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('-webkit-print-color-adjust', 'exact');
-    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('-webkit-filter', 'opacity(1)');
+    (0, _jquery2.default)('#chrome-shadow-fixer-' + i).css('-webkit-filter', 'blur(0)');
   });
   elementsWithShadows.forEach(function (el) {
     return (0, _jquery2.default)(el).css('box-shadow', 'none');
   });
 };
-
-fixShadows();
 
 /***/ }),
 /* 117 */
