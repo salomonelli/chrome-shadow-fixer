@@ -1,9 +1,9 @@
 const path = require('path');
 
-module.exports = [{
+module.exports = {
   entry: ['./src/javascript.js'],
   output: {
-    path: path.join(__dirname, 'dist/lib'),
+    path: path.join(__dirname, 'dist'),
     filename: 'javascript.js',
     libraryTarget: 'var',
     library: 'ChromeShadowFixer'
@@ -16,11 +16,4 @@ module.exports = [{
       }
     }]
   }
-},
-{
-  entry: ['./src/javascript.js'],
-  output: {
-    path: path.join(__dirname, 'dist/es'),
-    filename: 'javascript.js'
-  }
-}];
+};
