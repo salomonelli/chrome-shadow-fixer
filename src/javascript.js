@@ -7,13 +7,12 @@ const getElements = elements => {
     const style = window.getComputedStyle(element, null).getPropertyValue('box-shadow');
     if(style !== 'none') {
       element.style.boxShadow = 'none';
-      console.log(element.getBoundingClientRect());
       ret.push({
         shadow: style,
         top: element.offsetTop + 'px',
-        left: element.offsetleft + 'px',
-        width: element.getBoundingClientRect().width,
-        height: element.getBoundingClientRect().height
+        left: element.offsetLeft + 'px',
+        width: element.getBoundingClientRect().width +'px',
+        height: element.getBoundingClientRect().height + 'px'
       });
     }
   }
