@@ -1,19 +1,23 @@
-import $ from 'jquery';
 
 const getElements = elements => {
   if(elements && elements.length > 0) return elements;
-  return $('*').get().filter(el => $(el).css('box-shadow') !== 'none');
-};
-
-const getElementsStyling = elements => {
-  return elements.map(el => {
-    return {
-      offset: $(el).offset(),
-      height: $(el).outerHeight(),
-      width: $(el).outerWidth(),
-      shadow: $(el).css('box-shadow')
-    };
-  });
+  elements = document.getElementsByTagName('*');
+  let ret = [];
+  for (const element of elements) {
+    const style = window.getComputedStyle(element, null).getPropertyValue('box-shadow');
+    if(style !== 'none') {
+      element.style.boxShadow = 'none';
+      console.log(element.getBoundingClientRect());
+      ret.push({
+        shadow: style,
+        top: element.offsetTop + 'px',
+        left: element.offsetleft + 'px',
+        width: element.getBoundingClientRect().width,
+        height: element.getBoundingClientRect().height
+      });
+    }
+  }
+  return ret;
 };
 
 const generateElements = elements => {
@@ -29,18 +33,16 @@ export const fix = elements => {
     return;
   }
   const generatedElements = generateElements(elementsWithShadows);
-  $('body').append(generatedElements);
-  const elementStylings = getElementsStyling(elementsWithShadows);
-  elementStylings.forEach((el, i) => {
-    $('#chrome-shadow-fixer-'+i).css('position', 'absolute');
-    $('#chrome-shadow-fixer-'+i).css('display', 'inline-block');
-    $('#chrome-shadow-fixer-'+i).css('top', el.offset.top);
-    $('#chrome-shadow-fixer-'+i).css('left', el.offset.left);
-    $('#chrome-shadow-fixer-'+i).css('height', el.height);
-    $('#chrome-shadow-fixer-'+i).css('width', el.width);
-    $('#chrome-shadow-fixer-'+i).css('box-shadow', el.shadow);
-    $('#chrome-shadow-fixer-'+i).css('-webkit-print-color-adjust', 'exact');
-    $('#chrome-shadow-fixer-'+i).css('-webkit-filter', 'blur(0)');
+  document.body.innerHTML += generatedElements;
+  elementsWithShadows.forEach((el, i) => {
+    const element = document.querySelector('#chrome-shadow-fixer-' + i);
+    element.style.height = el.height;
+    element.style.width = el.width;
+    element.style.left = el.left;
+    element.style.top = el.top;
+    element.style.position = 'absolute';
+    element.style.boxShadow = el.shadow;
+    element.style['-webkit-print-color-adjust'] = 'exact';
+    element.style['-webkit-filter'] = 'opacity(1)';
   });
-  elementsWithShadows.forEach(el => $(el).css('box-shadow', 'none'));
 };

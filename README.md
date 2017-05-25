@@ -1,5 +1,2 @@
 # chrome-shadow-fixer
-Makes box-shadows printable in Chrome
-
-
-## this is in progress
+This module makes box-shadows printable in Chrome (up to v.38).
