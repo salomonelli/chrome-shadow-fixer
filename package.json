@@ -1,6 +1,6 @@
 {
   "name": "chrome-shadow-fixer",
-  "version": "0.0.12",
+  "version": "1.0.0",
   "description": "fixes box-shadows to be printable in Chrome",
   "main": "dist/javascript.js",
   "jsnext:main": "src/javascript.js",
