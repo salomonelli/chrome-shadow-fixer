@@ -1,6 +1,8 @@
 # chrome-shadow-fixer
 This module makes box-shadows printable in Chrome (up to v.38).
 
+[![npm version](https://badge.fury.io/js/chrome-shadow-fixer.svg)](https://badge.fury.io/js/chrome-shadow-fixer)
+
 ## Usage
 
 ### Browser
